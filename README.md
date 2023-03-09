@@ -13,7 +13,7 @@ function level `Sum` using the `Akka` actor library.
 
 We have specified `Program` in terms of `Function`, `DataStructure` and `Algorithm`.
 
-`Function` is used for lifting primitive functions as programs.
+`Function` is used for lifting primitive functions to programs.
 
 `DataStructure` is specified in terms of `Product` and `Sum`.
 
@@ -23,7 +23,7 @@ We have specified `Program` in terms of `Function`, `DataStructure` and `Algorit
 
 `Sum` is used for defining if-then-else logic.
 
-### Main program Materialization
+### Main program materialization
 
 A main program is a program of type `Unit >--> Unit`.
 
@@ -37,9 +37,9 @@ private[psbp] trait MainProgramMaterialization[-A, >-->[-_, +_], +B]:
   private[psbp] lazy val `(u>-->u)=>(a?=>b)`: (Unit >--> Unit) => (A ?=> B)
 ```
 
-### Program Materialization
+### Program materialization
 
-Below program materialization is defined.
+Below corresponding program materialization is defined.
 
 ```scala
 package psbp.specification.materialization
@@ -69,7 +69,7 @@ private[psbp] def materialize[
 
       import summonedMainProgramMaterialization.{`(u>-->u)=>(a?=>b)`}
 
-      `(u>-->u)=>(a?=>b)`(`u>-->z` >--> { Let { `z>-->y` } In { `(z&&y)=>u` } })
+      `(u>-->u)=>(a?=>b)` { `u>-->z` >--> { Let { `z>-->y` } In { `(z&&y)=>u` } } }
 ```
 
 For now a program is transformed to a main program using a program of type `Unit >--> Z` and a program of type
@@ -110,5 +110,5 @@ private[psbp] given reactiveMainProgramMaterialization
 
 ## Conclusion
 
-we have specified main program materialization, defined corresponding program materialization and implemented main
-in terms of type `Active` and type `Reactive`.
+We have specified main program materialization, defined corresponding program materialization and implemented main
+program materialization in terms of type `Active` and type `Reactive`.

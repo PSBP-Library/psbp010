@@ -25,4 +25,4 @@ private[psbp] def materializeProgram[
 
       import summonedMainProgramMaterialization.{`(u>-->u)=>(a?=>b)`}
 
-      `(u>-->u)=>(a?=>b)`(`u>-->z` >--> { Let { `z>-->y` } In { `(z&&y)=>u` } })
+      `(u>-->u)=>(a?=>b)` { `u>-->z` >--> { Let { `z>-->y` } In { `(z&&y)=>u` } } }
